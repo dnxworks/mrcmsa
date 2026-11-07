@@ -1,0 +1,118 @@
+/* Colors come from the mahallah logo */
+:root {
+  --red: #e5431d;
+  --blue: #2434c9;
+  --gold: #f4c430;
+  --green: #1f9d55;
+  --ink: #151726;
+  --bg: #f3f5fb;
+  --line: #dfe3f0;
+}
+* { box-sizing: border-box; margin: 0; }
+body { font-family: 'Sora', system-ui, sans-serif; background: var(--bg); color: var(--ink); line-height: 1.5; padding-bottom: 84px; }
+.hidden { display: none !important; }
+a { color: var(--blue); }
+
+/* Top bar */
+header { position: sticky; top: 0; z-index: 5; display: flex; align-items: center; gap: 12px; padding: 10px 16px; background: var(--blue); color: #fff; border-bottom: 4px solid var(--gold); }
+header img { width: 44px; height: 44px; border-radius: 50%; background: #fff; }
+header h1 { flex: 1; font-size: 1.1rem; font-weight: 800; }
+header small { display: block; font-size: .7rem; font-weight: 400; opacity: .85; }
+
+main { max-width: 760px; margin: 0 auto; padding: 16px; }
+h2 { font-size: 1.1rem; margin-bottom: 8px; }
+p { margin-bottom: 8px; }
+.small { font-size: .8rem; opacity: .8; }
+
+/* Login hero */
+.hero { text-align: center; color: #fff; background: var(--blue); border-radius: 20px; padding: 32px 20px; margin-top: 8px; }
+.hero img { width: 190px; max-width: 60%; border-radius: 50%; background: #fff; border: 6px solid var(--red); box-shadow: 0 0 0 6px var(--gold); margin-bottom: 26px; }
+.hero h2 { font-size: 1.7rem; font-weight: 800; }
+.hero p { margin: 6px 0 20px; opacity: .9; }
+.hero details { margin-top: 20px; text-align: left; }
+.hero summary { text-align: center; cursor: pointer; }
+.hero form { background: rgba(255,255,255,.12); padding: 4px 14px 14px; border-radius: 12px; margin-top: 10px; }
+.hero .alt { background: var(--gold); color: var(--ink); margin-top: 12px; }
+
+/* Cards, lists, tags */
+.card { background: #fff; border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 16px; }
+.item { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.item:last-child { border-bottom: 0; }
+.item .btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.tag { display: inline-block; font-size: .72rem; font-weight: 600; padding: 2px 10px; border-radius: 99px; background: var(--gold); color: var(--ink); }
+.tag.red { background: var(--red); color: #fff; }
+.tag.green { background: var(--green); color: #fff; }
+.tag.grey { background: #8a8fa3; color: #fff; }
+.tag.blue { background: var(--blue); color: #fff; }
+.notice { background: #fff6d6; border: 1px solid var(--gold); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; font-size: .85rem; }
+.notice.red { background: #ffe5de; border-color: var(--red); }
+.stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 10px; margin-bottom: 8px; }
+.stats div { background: var(--bg); border-radius: 10px; padding: 12px; font-size: .8rem; }
+.stats b { display: block; font-size: 1.3rem; color: var(--blue); }
+.rules { padding-left: 20px; }
+.rules li { margin-bottom: 10px; font-size: .9rem; }
+
+/* Forms and buttons */
+label { display: block; font-size: .85rem; font-weight: 600; margin: 10px 0 4px; }
+label.check { display: flex; gap: 8px; align-items: flex-start; font-weight: 400; margin-top: 14px; }
+input, select, textarea { width: 100%; padding: 10px; border: 1px solid var(--line); border-radius: 10px; font: inherit; color: inherit; background: #fff; }
+input[type=checkbox] { width: auto; margin-top: 4px; }
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+button, .btn { font: inherit; font-weight: 600; border: 0; border-radius: 10px; padding: 10px 16px; background: var(--red); color: #fff; cursor: pointer; text-decoration: none; display: inline-block; }
+button.alt, .btn { background: var(--blue); }
+button.green { background: var(--green); }
+button.ghost { background: transparent; color: inherit; border: 1px solid currentColor; }
+button.small-btn { padding: 6px 12px; font-size: .8rem; }
+button:focus-visible, input:focus, select:focus, textarea:focus, summary:focus-visible, a:focus-visible { outline: 3px solid var(--gold); }
+.back { margin-bottom: 12px; color: var(--blue); }
+
+/* Facility and admin tabs */
+.tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px; }
+.tabs button { flex: 1; background: var(--bg); color: var(--ink); border: 2px solid var(--line); }
+.tabs button.on { background: var(--blue); color: #fff; border-color: var(--blue); }
+
+/* Calendar */
+.cal-head { display: flex; justify-content: space-between; align-items: center; margin: 8px 0; }
+.cal-head button { padding: 6px 14px; color: var(--blue); }
+.calendar { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.calendar .dn { text-align: center; font-size: .7rem; font-weight: 600; opacity: .6; }
+.calendar button.day { position: relative; padding: 8px 0 14px; background: var(--bg); color: var(--ink); border: 2px solid transparent; font-size: .9rem; }
+.calendar button.day:disabled { opacity: .3; cursor: not-allowed; }
+.calendar button.day.today { border-color: var(--gold); }
+.calendar button.day.sel { background: var(--blue); color: #fff; }
+.calendar .dots { position: absolute; bottom: 4px; left: 0; right: 0; display: flex; justify-content: center; gap: 3px; }
+.dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; }
+.dot.gold { background: var(--gold); } .dot.red { background: var(--red); } .dot.blue { background: var(--blue); }
+.calendar .sel .dot.blue { background: #fff; }
+.legend { font-size: .75rem; margin-top: 10px; opacity: .85; }
+
+/* Summary status banner */
+.status { border-radius: 14px; padding: 18px; margin-bottom: 14px; color: #fff; text-align: center; }
+.status .big { font-size: 2.2rem; line-height: 1.2; }
+.status h2 { margin: 4px 0; font-size: 1.2rem; }
+.status.pending { background: #b88a00; }
+.status.approved { background: var(--green); }
+.status.rejected, .status.overridden, .status.no_show { background: var(--red); }
+.status.cancelled { background: #8a8fa3; }
+
+/* Booking slip */
+.slip { background: #fff; border: 2px dashed var(--blue); border-radius: 14px; padding: 18px; margin-bottom: 14px; }
+.slip-head { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.slip-head img { width: 56px; height: 56px; border-radius: 50%; }
+.stamp { display: inline-block; border: 3px solid var(--green); color: var(--green); font-weight: 800; padding: 4px 12px; border-radius: 8px; transform: rotate(-3deg); margin-bottom: 10px; }
+
+/* Bottom menu */
+nav { position: fixed; bottom: 0; left: 0; right: 0; display: flex; background: #fff; border-top: 1px solid var(--line); z-index: 5; }
+nav button { flex: 1; background: none; color: var(--ink); border-radius: 0; font-size: .68rem; padding: 8px 2px; }
+nav button i { display: block; font-style: normal; font-size: 1.2rem; }
+nav button.on { color: var(--red); box-shadow: inset 0 3px var(--red); }
+
+/* Message pop-up */
+#msg { position: fixed; top: 74px; left: 50%; transform: translateX(-50%); z-index: 9; background: var(--ink); color: #fff; padding: 10px 18px; border-radius: 10px; max-width: 90%; text-align: center; }
+
+/* Print: only the slip */
+@media print {
+  body * { visibility: hidden; }
+  .slip, .slip * { visibility: visible; }
+  .slip { position: absolute; left: 0; top: 0; width: 100%; border-color: #000; }
+}

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SalahRent | Mahallah Salahuddin Court Booking</title>
+  <link rel="icon" href="assets/logo.jpeg">
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header>
+  <img src="assets/logo.jpeg" alt="Mahallah Salahuddin Al-Ayyubi logo">
+  <h1>SalahRent<small id="hello">MPH and MPC booking</small></h1>
+  <button id="logout" class="ghost hidden">Log out</button>
+</header>
+
+<div id="msg" class="hidden" role="status"></div>
+
+<main>
+  <!-- LOGIN -->
+  <section id="login" class="hero">
+    <img src="assets/logo.jpeg" alt="">
+    <h2>Book the court. Play on time.</h2>
+    <p>Multi-Purpose Hall (MPH) and Multi-Purpose Court (MPC) for Mahallah Salahuddin residents, clubs and organizations.</p>
+    <button id="googleBtn">Continue with Google</button>
+    <details>
+      <summary>MRC and staff login</summary>
+      <form id="adminForm">
+        <label for="aEmail">Email</label><input id="aEmail" type="email" required>
+        <label for="aPass">Password</label><input id="aPass" type="password" required>
+        <button class="alt">Log in</button>
+      </form>
+    </details>
+  </section>
+
+  <!-- APP -->
+  <div id="app" class="hidden">
+
+    <!-- BOOK: calendar + taken slots + form -->
+    <section id="book" class="view hidden">
+      <div id="banBox" class="notice red hidden"></div>
+      <div class="card">
+        <h2>1. Choose facility</h2>
+        <div id="facTabs" class="tabs"></div>
+        <h2 style="margin-top:16px">2. Pick a date</h2>
+        <div class="cal-head">
+          <button type="button" class="ghost" id="prevMonth" aria-label="Previous month">&lt;</button>
+          <b id="monthTitle"></b>
+          <button type="button" class="ghost" id="nextMonth" aria-label="Next month">&gt;</button>
+        </div>
+        <div id="calendar" class="calendar"></div>
+        <p class="legend"><span class="dot gold"></span> waiting for approval &nbsp; <span class="dot red"></span> approved &nbsp; <span class="dot blue"></span> program</p>
+      </div>
+
+      <div class="card">
+        <h2 id="dayTitle">Bookings on this day</h2>
+        <div id="slots"></div>
+      </div>
+
+      <div class="card">
+        <h2>3. Booking details</h2>
+        <div id="hint" class="notice hidden"></div>
+        <form id="bookForm">
+          <label for="bDate">Date</label><input id="bDate" type="date" required>
+          <div class="row">
+            <div><label for="bStart">Start time</label><input id="bStart" type="time" step="900" required></div>
+            <div><label for="bEnd">End time</label><input id="bEnd" type="time" step="900" required></div>
+          </div>
+          <label for="bSport">Activity</label>
+          <select id="bSport">
+            <option>Futsal</option><option>Volleyball</option><option>Netball</option>
+            <option>Badminton</option><option>Takraw</option><option>Other</option>
+          </select>
+          <label for="bPurpose">Purpose</label><input id="bPurpose" placeholder="Example: friendly match" required>
+          <label for="bName">Name</label><input id="bName" required>
+          <div class="row">
+            <div><label for="bMatric">Matric no.</label><input id="bMatric" required></div>
+            <div><label for="bPhone">Phone no.</label><input id="bPhone" type="tel" required></div>
+          </div>
+          <div class="row">
+            <div><label for="bRoom">Room no.</label><input id="bRoom" required></div>
+            <div><label for="bClub">Club (if any)</label><input id="bClub"></div>
+          </div>
+          <div class="row">
+            <div><label for="bRes">Resident?</label>
+              <select id="bRes"><option value="resident">Resident</option><option value="non-resident">Non-resident</option></select></div>
+            <div><label for="bPeople">Participants</label><input id="bPeople" type="number" min="1" value="10" required></div>
+          </div>
+          <label class="check"><input id="agree" type="checkbox"> I have read the <a href="#" data-go="rules">rules and regulations</a>.</label>
+          <button style="margin-top:14px;width:100%">Send booking request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- PROGRAM -->
+    <section id="program" class="view hidden">
+      <div class="card">
+        <h2>Program booking</h2>
+        <p>Use this for official programs of clubs and University Bodies (UB). Weekend evening sessions are for UB programs only. The MRC will check and approve your request.</p>
+      </div>
+      <div class="card">
+        <h2>Documents to fill in</h2>
+        <p class="small">Prepare these before you send your request, then upload them to Google Drive and paste the link below.</p>
+        <div id="docList"></div>
+      </div>
+      <div class="card">
+        <h2>Program details</h2>
+        <form id="progForm">
+          <label for="pFac">Facility</label><select id="pFac"></select>
+          <label for="pName">Program name</label><input id="pName" required>
+          <label for="pClub">Organizer (club or UB)</label><input id="pClub" required>
+          <label for="pDate">Date</label><input id="pDate" type="date" required>
+          <div class="row">
+            <div><label for="pStart">Start time</label><input id="pStart" type="time" step="900" required></div>
+            <div><label for="pEnd">End time</label><input id="pEnd" type="time" step="900" required></div>
+          </div>
+          <label for="pPurpose">What will happen?</label><textarea id="pPurpose" rows="2" required></textarea>
+          <label for="pPeople">Participants</label><input id="pPeople" type="number" min="1" required>
+          <label for="pDocs">Link to your completed documents (Google Drive)</label>
+          <input id="pDocs" type="url" placeholder="https://drive.google.com/..." required>
+          <p class="small" style="margin-top:12px"><b>Person in charge</b></p>
+          <label for="pPerson">Name</label><input id="pPerson" required>
+          <div class="row">
+            <div><label for="pMatric">Matric no.</label><input id="pMatric" required></div>
+            <div><label for="pPhone">Phone no.</label><input id="pPhone" type="tel" required></div>
+          </div>
+          <label for="pRoom">Room no.</label><input id="pRoom" required>
+          <label class="check"><input id="pAgree" type="checkbox"> I have filled in all the documents above.</label>
+          <button style="margin-top:14px;width:100%">Send program request</button>
+        </form>
+      </div>
+    </section>
+
+    <!-- MY BOOKINGS -->
+    <section id="mine" class="view hidden">
+      <div class="banBox notice red hidden" id="banBox2"></div>
+      <div class="card"><h2>My bookings</h2><div id="myBookings"></div></div>
+    </section>
+
+    <!-- SUMMARY / SLIP -->
+    <section id="summary" class="view hidden">
+      <button class="ghost back noprint" data-go="mine">&larr; My bookings</button>
+      <div id="sumBody"></div>
+    </section>
+
+    <!-- FEEDBACK -->
+    <section id="feedback" class="view hidden">
+      <div class="card">
+        <h2>Court feedback</h2>
+        <p class="small">Tell us how the court was and report any problem. The MRC tracks every issue until it is fixed.</p>
+        <form id="fbForm">
+          <label for="fbFac">Facility</label><select id="fbFac"></select>
+          <label for="fbDate">Date you used it</label><input id="fbDate" type="date" required>
+          <label for="fbRate">Rating</label>
+          <select id="fbRate">
+            <option value="5">5 - Excellent</option><option value="4">4 - Good</option>
+            <option value="3">3 - Okay</option><option value="2">2 - Poor</option><option value="1">1 - Very bad</option>
+          </select>
+          <label for="fbIssue">Any problem?</label>
+          <select id="fbIssue">
+            <option>No problem</option><option>Cleanliness</option><option>Lighting</option>
+            <option>Net or equipment</option><option>Floor or surface</option><option>Safety</option><option>Other</option>
+          </select>
+          <label for="fbText">Comment</label><textarea id="fbText" rows="3" placeholder="What happened?"></textarea>
+          <button style="margin-top:14px;width:100%">Send feedback</button>
+        </form>
+      </div>
+      <div class="card"><h2 id="fbListTitle">My feedback</h2><div id="fbStats" class="stats"></div><div id="fbList"></div></div>
+    </section>
+
+    <!-- RULES -->
+    <section id="rules" class="view hidden">
+      <div class="card">
+        <h2>Booking rules</h2>
+        <ol class="rules">
+          <li><b>3 days per week.</b> Each person, club or organization can book the court for a maximum of 3 days in a week. After that, the next days go to other users.</li>
+          <li><b>No-show, late or last-minute cancel.</b> If you do not use your booking, cancel at the last minute (less than 3 hours before), or arrive more than 15 minutes late without a good reason, you cannot book for 3 days.</li>
+          <li><b>Weekend evenings.</b> Saturday and Sunday evening sessions are only for events and programs of University Bodies (UB), with MRC approval.</li>
+          <li><b>Weekday evenings.</b> Monday to Friday evening sessions rotate between Volleyball, Netball and Futsal (see the table below).</li>
+          <li><b>WhatsApp Community.</b> Volleyball, Netball and Futsal groups are joined in one WhatsApp Community. Booking news, schedules and announcements are sent there.</li>
+          <li><b>Rotation is fair.</b> If you already used the court more than 3 days in a week, give other users priority on the next day.</li>
+        </ol>
+        <p class="small">Evening session: <span id="eveningText"></span> (MPC).</p>
+        <a class="btn" href="docs/booking-rules.pdf" target="_blank" rel="noopener">Read full rules (PDF)</a>
+      </div>
+      <div class="card"><h2>Weekday evening rotation</h2><div id="rotationView"></div></div>
+      <div class="card mrc-only hidden">
+        <h2>Edit rotation (MRC)</h2>
+        <div id="rotationEdit"></div>
+      </div>
+      <div class="card"><h2>Questions?</h2><p class="small">MRC Sports &amp; Recreation Bureau</p><div id="contacts"></div></div>
+    </section>
+
+    <!-- ADMIN -->
+    <section id="admin" class="view hidden">
+      <div class="card">
+        <h2>Booking requests</h2>
+        <div id="adminTabs" class="tabs">
+          <button data-tab="pending">Pending</button>
+          <button data-tab="approved">Approved</button>
+          <button data-tab="all">All</button>
+        </div>
+        <div id="adminList"></div>
+      </div>
+      <div class="card mrc-only hidden">
+        <h2>Reserve for a program (override)</h2>
+        <p class="small">This approves the program at once and cancels any student bookings at the same time.</p>
+        <form id="overrideForm">
+          <label for="oFac">Facility</label><select id="oFac"></select>
+          <label for="oName">Program name</label><input id="oName" required>
+          <label for="oClub">Organizer</label><input id="oClub" required>
+          <label for="oDate">Date</label><input id="oDate" type="date" required>
+          <div class="row">
+            <div><label for="oStart">Start time</label><input id="oStart" type="time" step="900" required></div>
+            <div><label for="oEnd">End time</label><input id="oEnd" type="time" step="900" required></div>
+          </div>
+          <label for="oNote">Note (optional)</label><input id="oNote">
+          <button class="alt" style="margin-top:14px;width:100%">Reserve and override</button>
+        </form>
+      </div>
+    </section>
+
+    <nav>
+      <button data-view="book"><i>📅</i>Book</button>
+      <button data-view="program"><i>🎓</i>Program</button>
+      <button data-view="mine"><i>🧾</i>Mine</button>
+      <button data-view="feedback"><i>💬</i>Feedback</button>
+      <button data-view="rules"><i>📜</i>Rules</button>
+      <button data-view="admin" class="staff-only hidden"><i>🛠</i>Admin</button>
+    </nav>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script src="js/config.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
