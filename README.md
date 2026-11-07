@@ -6,12 +6,12 @@ Plain HTML, CSS and JavaScript. Free database and login by Supabase. Hosted free
 
 ```
 index.html        the page
-css/style.css     the look
-js/config.js      your keys, document list, contacts (EDIT THIS)
-js/app.js         all the logic (commented)
-supabase/schema.sql   database + booking rules
-docs/booking-rules.pdf  rules file students can open
-assets/logo.jpeg
+style.css         the look
+config.js         your keys, document list, contacts (EDIT THIS)
+app.js            all the logic (commented)
+schema.sql        database + booking rules
+booking-rules.pdf rules file students can open
+logo.jpeg
 ```
 
 ## Setup (one time)
@@ -19,7 +19,7 @@ assets/logo.jpeg
 1. **Supabase**: create a project at supabase.com. Open SQL Editor, paste all of `supabase/schema.sql`, click Run.
 
 Supabase Pass = SalahuddinDiHati
-2. **Keys**: Project Settings > API. Copy the Project URL and the anon public key into `js/config.js`.
+2. **Keys**: Project Settings > API. Copy the Project URL and the anon public key into `config.js`.
 3. **GitHub**: create a new public repository. Upload all the files (drag and drop works). Then Settings > Pages > Source: "Deploy from a branch", Branch: `main`, folder `/ (root)`, Save.
    Your link will be `https://YOUR-NAME.github.io/REPO-NAME/`.
 4. **Login redirect**: Supabase > Authentication > URL Configuration. Set Site URL to your GitHub Pages link. Add the same link (with `/` at the end) under Redirect URLs. For testing on your laptop also add `http://127.0.0.1:5500/`.
@@ -27,7 +27,7 @@ Supabase Pass = SalahuddinDiHati
 6. **MRC admin**: Supabase > Authentication > Users > Add user (email and password). Then in SQL Editor run:
    `update profiles set role = 'mrc' where email = 'your-email@example.com';`
    (Use `principal`, `officer` or `fellow` for read-only staff.)
-7. **Documents for programs**: put your files in the `docs` folder and list them in `PROGRAM_DOCUMENTS` inside `js/config.js`.
+7. **Documents for programs**: put your files in the project folder and list them in `PROGRAM_DOCUMENTS` inside `config.js`.
 
 After you change a file, upload it again to GitHub. The site updates in about a minute.
 

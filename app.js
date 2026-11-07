@@ -356,7 +356,7 @@ const rowsHTML = (b) => detailRows(b).map(([k, v]) => `<div class="item"><span>$
 
 function slipHTML(b) {
   return `<div class="slip">
-    <div class="slip-head"><img src="assets/logo.jpeg" alt=""><div><b>Mahallah Salahuddin Al-Ayyubi</b><br>Facility Booking Slip</div></div>
+    <div class="slip-head"><img src="logo.jpeg" alt=""><div><b>Mahallah Salahuddin Al-Ayyubi</b><br>Facility Booking Slip</div></div>
     <div class="stamp">CONFIRMED BY MRC</div>
     ${rowsHTML(b)}
     <div class="item"><span>Confirmed by</span><b>${esc(b.approved_by_name)}</b></div>
